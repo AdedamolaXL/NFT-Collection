@@ -23,7 +23,7 @@ Lets start building 🚀
   Fungible means to be the same or interchangeable eg Eth is fungible. With this in mind, NFTs are unique; each one is different. Every single token has unique characteristics and values. They are all distinguishable from one another and are not interchangeable eg Unique Art
 
 - What is ERC-721?
-  ERC-721 is an open standard that describes how to build Non-Fungible tokens on EVM (Ethereum Virtual Machine) compatible blockchains; it is a standard interface for Non-Fungible tokens; it has a set of rules which make it easy to work with NFTs. Before moving ahead have a look at all the functions supported by [ERC721](https://docs.openzeppelin.com/contracts/3.x/api/token/erc721)
+  ERC-721 is an open standard that describes how to build Non-Fungible tokens on EVM (Ethereum Virtual Machine) compatible blockchains; it is a standard interface for Non-Fungible tokens; it has a set of rules which makes it easy to work with NFTs. Before moving ahead have a look at all the functions supported by [ERC721](https://docs.openzeppelin.com/contracts/3.x/api/token/erc721)
 
 ## Build
 
@@ -43,7 +43,7 @@ If you would rather learn from a video, we have a recording available of this tu
     - renounceOwnership for the owner to relinquish this administrative privilege, a common pattern after an initial stage with centralized administration is over.
 
 - We would also be using an extension of ERC721 known as [ERC721 Enumerable](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721Enumerable.sol)
-  - ERC721 Enumerable is helps you to keep track of all the tokenIds in the contract and also the tokensIds held by an address for a given contract.
+  - ERC721 Enumerable helps you to keep track of all the tokenIds in the contract and also the tokensIds held by an address for a given contract.
   - Please have a look at the [functions](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721Enumerable) it implements before moving ahead
 
 To build the smart contract we would be using [Hardhat](https://hardhat.org/). Hardhat is an Ethereum development environment and framework designed for full stack development in Solidity. In simple words you can write your smart contract, deploy them, run tests, and debug your code.
@@ -79,13 +79,13 @@ npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs
 
   and press `enter` for all the questions.
 
-- In the same terminal now install `@openzeppelin/contracts` as we would be importing [Openzeppelin's ERC721Enumerable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721Enumerable.sol) in our `CryptoDevs` contract.
+- In the same terminal now install `@openzeppelin/contracts` as we will be importing [Openzeppelin's ERC721Enumerable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721Enumerable.sol) in our `CryptoDevs` contract.
 
   ```bash
   npm install @openzeppelin/contracts
   ```
 
-- We will need to call the `Whitelist Contract` that you deployed for your previous level to check for addresses that were whitelisted and give them presale access. As we only need to call `mapping(address => bool) public whitelistedAddresses;` We can create an interface for `Whitelist contract` with a function only for this mapping, this way we would save `gas` as we would not need to inherit and deploy the entire `Whitelist Contract` but only a part of it.
+- We will need to call the `Whitelist Contract` that you deployed for your previous level to check for addresses that were whitelisted and give them presale access. As we only need to call `mapping(address => bool) public whitelistedAddresses;` We can create an interface for `Whitelist contract` with a function only for this mapping, this way we can save `gas` as we won't need to inherit and deploy the entire `Whitelist Contract` but only a part of it.
 
 - Create a new file inside the `contracts` directory and call it `IWhitelist.sol`
 
@@ -133,7 +133,7 @@ npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs
         // boolean to keep track of whether presale started or not
         bool public presaleStarted;
 
-        // timestamp for when presale would end
+        // timestamp for when presale will end
         uint256 public presaleEnded;
 
         modifier onlyWhenNotPaused {
@@ -189,7 +189,7 @@ npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs
         }
 
         /**
-        * @dev _baseURI overides the Openzeppelin's ERC721 implementation which by default
+        * @dev _baseURI overrides the Openzeppelin's ERC721 implementation which by default
         * returned an empty string for the baseURI
         */
         function _baseURI() internal view virtual override returns (string memory) {
@@ -221,7 +221,7 @@ npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs
         fallback() external payable {}
     }
   ```
-- Now we would install `dotenv` package to be able to import the env file and use it in our config. Open up a terminal pointing at`hardhat-tutorial` directory and execute this command
+- Now we will install `dotenv` package to help us import the env file and use it in our config. Open up a terminal pointing at`hardhat-tutorial` directory and execute this command
 
   ```bash
   npm install dotenv
@@ -284,7 +284,7 @@ npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs
   ```
 
 - As you can read, `deploy.js` requires some constants. Lets create a folder named `constants` under the `hardhat-tutorial` folder
-- Now add an `index.js` file inside the `constants` folder and add the following lines to the file. Replace "address-of-the-whitelist-contract" with the address of the whitelist contract that you deployed in the previous tutorial. For Metadata_URL, just copy the sample one that has been provided. We would replace this further down in the tutorial.
+- Now add an `index.js` file inside the `constants` folder and add the following lines to the file. Replace "address-of-the-whitelist-contract" with the address of the whitelist contract that you deployed in the previous tutorial. For Metadata_URL, just copy the sample one that has been provided. We will replace this further down in the tutorial.
 
   ```js
   // Address of the Whitelist Contract that you deployed
@@ -295,7 +295,7 @@ npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs
   module.exports = { WHITELIST_CONTRACT_ADDRESS, METADATA_URL };
   ```
 
-- Now open the hardhat.config.js file, we would add the `rinkeby` network here so that we can deploy our contract to rinkeby. Replace all the lines in the `hardhart.config.js` file with the given below lines
+- Now open the hardhat.config.js file, we will add the `rinkeby` network here so that we can deploy our contract to rinkeby. Replace all the lines in the `hardhart.config.js` file with the given below lines
 
   ```js
   require("@nomiclabs/hardhat-waffle");
@@ -914,3 +914,4 @@ To make the collection available on Opensea, we would need to create a metadata 
 - Your NFT is now available on Opensea 🚀 🥳
 
 - Share your Opensea link with everyone on discord :) and spread happiness.
+  
